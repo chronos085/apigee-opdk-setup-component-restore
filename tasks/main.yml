@@ -1,24 +1,24 @@
 ---
-- name: Stop Apigee component {{ component }}
-  command: '/opt/apigee/apigee-service/bin/apigee-service {{ component }} stop'
+- name: Stop Apigee Service {{ apigee_service }}
+  command: '/opt/apigee/apigee-service/bin/apigee-service {{ apigee_service }} stop'
 
-- name: Remove Data Apigee component {{ component }}
+- name: Remove Data Apigee Service {{ apigee_service }}
   become: yes
   file:
-    path: /opt/apigee/data/{{ component }}
+    path: /opt/apigee/data/{{ apigee_service }}
     state: absent
 
-- name: Remove Data Apigee component {{ component }}
+- name: Remove Data Apigee Service {{ apigee_service }}
   become: yes
   file:
-    path: /opt/apigee/data/{{ component }}.d
+    path: /opt/apigee/data/{{ apigee_service }}.d
     state: absent
 
-- name: Restore Apigee component {{ component }}
-  command: '/opt/apigee/apigee-service/bin/apigee-service {{ component }} restore'
+- name: Restore Apigee Service {{ apigee_service }}
+  command: '/opt/apigee/apigee-service/bin/apigee-service {{ apigee_service }} restore'
 
-- name: Start Apigee component {{ component }}
-  command: '/opt/apigee/apigee-service/bin/apigee-service {{ component }} start'
+- name: Start Apigee Service {{ apigee_service }}
+  command: '/opt/apigee/apigee-service/bin/apigee-service {{ apigee_service }} start'
 
-- name: Wait for Apigee component {{ component }}
-  command: '/opt/apigee/apigee-service/bin/apigee-service {{ component }} wait_for_ready'
+- name: Wait for Apigee Service {{ apigee_service }}
+  command: '/opt/apigee/apigee-service/bin/apigee-service {{ apigee_service }} wait_for_ready'
